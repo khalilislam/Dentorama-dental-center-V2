@@ -20,17 +20,17 @@ import {
 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
-import heroDentists from "../assets/hero-dentists.png";
-import about1Img from "../assets/clinic-memmeri.png";
-import about2Img from "../assets/clinic-tamendjari.png";
-import ba1Before from "../assets/ba-1-before.jpg";
-import ba1After from "../assets/ba-1-after.jpg";
-import ba2Before from "../assets/ba-2-before.jpg";
-import ba2After from "../assets/ba-2-after.jpg";
-import ba3Before from "../assets/ba-3-before.jpg";
-import ba3After from "../assets/ba-3-after.jpg";
-// Importing with relative path to ensure Vercel resolves it correctly
-import doctorImg from "../assets/doctor.png";
+import heroDentists from "@/assets/hero-dentists.png";
+import about1Img from "@/assets/clinic-memmeri.png";
+import about2Img from "@/assets/clinic-tamendjari.png";
+import ba1Before from "@/assets/ba-1-before.jpg";
+import ba1After from "@/assets/ba-1-after.jpg";
+import ba2Before from "@/assets/ba-2-before.jpg";
+import ba2After from "@/assets/ba-2-after.jpg";
+import ba3Before from "@/assets/ba-3-before.jpg";
+import ba3After from "@/assets/ba-3-after.jpg";
+// Importing with @ alias
+import doctorImg from "@/assets/founder-portrait.png";
 
 const HERO = heroDentists;
 const ABOUT1 = about1Img;
