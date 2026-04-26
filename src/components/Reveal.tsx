@@ -6,16 +6,23 @@ const variants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] } },
 };
 
+const scaleVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] } },
+};
+
 export function Reveal({
   children,
   delay = 0,
   className,
   as = "div",
+  scaleEnter = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "section" | "h1" | "h2" | "p";
+  scaleEnter?: boolean;
 }) {
   const Comp = motion[as];
   return (
@@ -23,7 +30,7 @@ export function Reveal({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
-      variants={variants}
+      variants={scaleEnter ? scaleVariants : variants}
       transition={{ delay }}
       className={className}
     >

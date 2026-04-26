@@ -23,7 +23,7 @@ const resources = {
         primaryBtn: "Make An Appointment",
         secondaryBtn: "Explore Our Site",
         rating: "Google Rating",
-        reviews: "Based on 492 reviews",
+        reviews: "Based on 16 reviews",
         founders: "Dr. Memmeri & Dr. Tamendjari",
         foundersRole: "Founders",
         infoCallTitle: "Need Dental Services?",
@@ -255,7 +255,7 @@ const resources = {
         primaryBtn: "احجز موعداً الآن",
         secondaryBtn: "استكشف موقعنا",
         rating: "تقييم جوجل",
-        reviews: "بناءً على ٤٩٢ مراجعة",
+        reviews: "بناءً على ١٦ مراجعة",
         founders: "د. ممري ود. تمنجري",
         foundersRole: "المؤسسان",
         infoCallTitle: "هل تحتاج لخدمات طب الأسنان؟",
@@ -405,7 +405,8 @@ const resources = {
           {
             name: "Yanis Bessal",
             role: "مريض",
-            quote: "فريق عمل محترف، استقبال حار، أسعار معقولة وعمل دقيق. سعيد جداً بالرعاية التي تلقيتها في دنتوراما.",
+            quote:
+              "فريق عمل محترف، استقبال حار، أسعار معقولة وعمل دقيق. سعيد جداً بالرعاية التي تلقيتها في دنتوراما.",
           },
           {
             name: "Dalila Bouanane",
@@ -416,7 +417,8 @@ const resources = {
           {
             name: "Ines Ferchouli",
             role: "مريضة",
-            quote: "راضية جداً عن تجربتي في هذه العيادة. استقبال حار، طاقم عمل محترف ورعاية عالية الجودة. شكراً على احترافيتكم.",
+            quote:
+              "راضية جداً عن تجربتي في هذه العيادة. استقبال حار، طاقم عمل محترف ورعاية عالية الجودة. شكراً على احترافيتكم.",
           },
         ],
       },
@@ -484,7 +486,7 @@ const resources = {
         primaryBtn: "Prendre un Rendez-vous",
         secondaryBtn: "Explorer le Site",
         rating: "Note Google",
-        reviews: "Basé sur 492 avis",
+        reviews: "Basé sur 16 avis",
         founders: "Dr. Memmeri & Dr. Tamendjari",
         foundersRole: "Fondateurs",
         infoCallTitle: "Besoin de soins dentaires?",
@@ -708,6 +710,7 @@ i18next
   .init({
     resources,
     fallbackLng: "en",
+    load: "languageOnly",
     interpolation: {
       escapeValue: false,
     },

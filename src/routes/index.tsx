@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
@@ -30,10 +31,10 @@ import ba3Before from "@/assets/ba-3-before.jpg";
 import ba3After from "@/assets/ba-3-after.jpg";
 import doctorImg from "@/assets/doctor-portrait.png";
 
-const HERO = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80";
-const ABOUT1 = "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80";
-const ABOUT2 = "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80";
-const DOCTOR = "https://images.unsplash.com/photo-1559839734-2b71f1536783?w=400&q=80";
+const HERO = heroDentists;
+const ABOUT1 = about1Img;
+const ABOUT2 = about2Img;
+const DOCTOR = doctorImg;
 
 const baPlaceholderBefore =
   "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80";
@@ -42,16 +43,16 @@ const baPlaceholderAfter =
 
 const beforeAfterCases = [
   {
-    before: baPlaceholderBefore,
-    after: baPlaceholderAfter,
+    before: ba1Before,
+    after: ba1After,
   },
   {
-    before: baPlaceholderBefore,
-    after: baPlaceholderAfter,
+    before: ba2Before,
+    after: ba2After,
   },
   {
-    before: baPlaceholderBefore,
-    after: baPlaceholderAfter,
+    before: ba3Before,
+    after: ba3After,
   },
 ];
 
@@ -86,6 +87,11 @@ const serviceList = [
 
 function HomePage() {
   const { t, i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const caseTranslations = t("beforeAfter.cases", { returnObjects: true }) as {
     title: string;
@@ -120,14 +126,7 @@ function HomePage() {
 
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8 pt-10 pb-24 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-1.5 text-xs font-medium text-primary shadow-sm"
-            >
-              <Sparkles className="h-3.5 w-3.5" /> {t("hero.badge")}
-            </motion.div>
+
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -183,7 +182,7 @@ function HomePage() {
             >
               <div>
                 <p className="text-sm font-semibold">
-                  {t("hero.rating")} <span className="text-amber-500">5.0</span>
+                  {t("hero.rating")} <span className="text-amber-500">4.8</span>
                 </p>
                 <div className="flex items-center gap-1 mt-1">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -205,7 +204,7 @@ function HomePage() {
             <div className="absolute inset-0 rounded-[3rem] bg-gradient-primary opacity-20 blur-3xl" />
             <img
               src={HERO}
-              alt="Smiling dentist"
+              alt="Our Dental Specialists"
               className="relative h-full w-full rounded-[3rem] object-cover shadow-card"
             />
 
@@ -225,11 +224,11 @@ function HomePage() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
-              className={`absolute -bottom-6 flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-card ${i18n.language === "ar" ? "right-4" : "left-4"}`}
+              className={`absolute -bottom-6 flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-card ${mounted && i18n.language === "ar" ? "right-4" : "left-4"}`}
             >
               <img
-                src={DOCTOR}
-                alt="Dr. Memmeri"
+                src={doctorImg}
+                alt={t("hero.founders")}
                 className="h-12 w-12 rounded-full object-cover border border-slate-50"
               />
               <div>
@@ -279,26 +278,33 @@ function HomePage() {
       {/* ABOUT */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-          <Reveal className="relative">
+          <div className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <img
-                src={ABOUT1}
-                alt="Clinic"
-                className="rounded-3xl object-cover h-72 w-full shadow-card"
-              />
-              <img
-                src={ABOUT2}
-                alt="Treatment"
-                className="rounded-3xl object-cover h-72 w-full mt-10 shadow-card"
-              />
+              <Reveal>
+                <img
+                  src={ABOUT1}
+                  alt="Clinic"
+                  className="rounded-3xl object-cover h-72 w-full shadow-card"
+                />
+              </Reveal>
+              <Reveal delay={0.2} className="mt-10">
+                <img
+                  src={ABOUT2}
+                  alt="Treatment"
+                  className="rounded-3xl object-cover h-72 w-full shadow-card"
+                />
+              </Reveal>
             </div>
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 grid h-28 w-28 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-soft animate-spin-slow">
+            <Reveal
+              delay={0.4}
+              className="absolute -bottom-4 left-1/2 -translate-x-1/2 grid h-28 w-28 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-soft animate-spin-slow"
+            >
               <div className="text-center leading-tight">
                 <p className="text-2xl font-bold">15+</p>
                 <p className="text-[10px] uppercase tracking-wide">{t("about.yearsExp")}</p>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
           <div>
             <Reveal>
@@ -308,7 +314,9 @@ function HomePage() {
               <h2 className="mt-3 text-3xl lg:text-4xl font-bold leading-tight">
                 {t("about.subtitle")}
               </h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">{t("about.description")}</p>
+              <p className="mt-5 text-muted-foreground leading-relaxed">
+                {t("about.description")}
+              </p>
             </Reveal>
             <StaggerGroup className="mt-8 grid sm:grid-cols-2 gap-4">
               {(t("about.features", { returnObjects: true }) as string[]).map((ft) => (
@@ -354,7 +362,9 @@ function HomePage() {
                   <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground group-hover:rotate-6 transition-transform">
                     <s.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="mt-5 text-lg font-bold">{t(`services.items.${s.key}.title`)}</h3>
+                  <h3 className="mt-5 text-lg font-bold">
+                    {t(`services.items.${s.key}.title`)}
+                  </h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                     {t(`services.items.${s.key}.desc`)}
                   </p>
@@ -384,63 +394,49 @@ function HomePage() {
 
           <div className="mt-14 grid gap-12 lg:gap-16">
             {beforeAfterCases.map((c, i) => (
-              <Reveal key={i} delay={i * 0.1}>
+              <div key={i}>
                 <div className="grid lg:grid-cols-5 gap-8 items-center">
                   <div className={`lg:col-span-3 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                    <BeforeAfterSlider
-                      before={c.before}
-                      after={c.after}
-                      alt={caseTranslations[i]?.title}
-                    />
+                    <Reveal delay={0.2} scaleEnter>
+                      <BeforeAfterSlider
+                        before={c.before}
+                        after={c.after}
+                        alt={caseTranslations[i]?.title}
+                      />
+                    </Reveal>
                   </div>
                   <div className={`lg:col-span-2 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                      {t("beforeAfter.case")}
-                      {i + 1}
-                    </span>
-                    <h3 className="mt-4 text-2xl lg:text-3xl font-bold leading-tight">
-                      {caseTranslations[i]?.title}
-                    </h3>
-                    <p className="mt-4 text-muted-foreground leading-relaxed">
-                      {caseTranslations[i]?.desc}
-                    </p>
-                    <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
-                      <span className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary" />{" "}
-                        {t("beforeAfter.naturalResult")}
+                    <Reveal delay={0.4}>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                        {t("beforeAfter.case")}
+                        {i + 1}
                       </span>
-                      <span className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary" />{" "}
-                        {t("beforeAfter.customCare")}
-                      </span>
-                    </div>
+                      <h3 className="mt-4 text-2xl lg:text-3xl font-bold leading-tight">
+                        {caseTranslations[i]?.title}
+                      </h3>
+                      <p className="mt-4 text-muted-foreground leading-relaxed">
+                        {caseTranslations[i]?.desc}
+                      </p>
+                      <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
+                        <span className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-primary" />{" "}
+                          {t("beforeAfter.naturalResult")}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-primary" />{" "}
+                          {t("beforeAfter.customCare")}
+                        </span>
+                      </div>
+                    </Reveal>
                   </div>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY US — stats */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8 grid md:grid-cols-4 gap-6">
-          {[
-            { icon: Users, n: "5,000+", l: t("stats.patients") },
-            { icon: Award, n: "15+", l: t("stats.experience") },
-            { icon: Stethoscope, n: "20+", l: t("stats.specialists") },
-            { icon: Star, n: "4.9", l: t("stats.rating") },
-          ].map((s, i) => (
-            <Reveal key={s.l} delay={i * 0.08}>
-              <div className="rounded-3xl bg-gradient-primary text-primary-foreground p-8 text-center shadow-soft">
-                <s.icon className="h-8 w-8 mx-auto opacity-90" />
-                <p className="mt-4 text-4xl font-bold">{s.n}</p>
-                <p className="mt-1 text-sm opacity-90">{s.l}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+
 
       {/* TESTIMONIALS */}
       <section className="py-24 bg-secondary/40">

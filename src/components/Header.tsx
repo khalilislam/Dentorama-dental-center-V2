@@ -9,6 +9,11 @@ export function Header() {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const nav = [
     { to: "/", label: t("nav.home") },
@@ -73,7 +78,9 @@ export function Header() {
             className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-full bg-muted/50 hover:bg-muted transition-colors border border-border/50"
           >
             <Globe className="h-3.5 w-3.5 text-primary" />
-            <span className="uppercase">{i18n.language}</span>
+            <span className="uppercase">
+              {mounted ? (i18n.language || "en").split("-")[0] : "en"}
+            </span>
           </button>
 
           <Link
