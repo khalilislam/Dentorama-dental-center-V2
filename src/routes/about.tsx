@@ -3,8 +3,8 @@ import { ArrowUpRight, Award, HeartPulse, Smile, Users, CheckCircle2 } from "luc
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import { useTranslation } from "react-i18next";
 
-const drMemmeri = "https://images.unsplash.com/photo-1559839734-2b71f1536783?w=800&q=80";
-const drTamendjari = "https://images.unsplash.com/photo-1622253692010-333f2da6028a?w=800&q=80";
+const drMemmeri = "/assets/dr-memmeri.png";
+const drTamendjari = "/assets/dr-tamendjari.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
