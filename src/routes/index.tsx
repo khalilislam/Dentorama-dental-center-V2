@@ -31,7 +31,7 @@ const ba2Before = "/assets/ba-2-before.jpg";
 const ba2After = "/assets/ba-2-after.jpg";
 const ba3Before = "/assets/ba-3-before.jpg";
 const ba3After = "/assets/ba-3-after.jpg";
-const doctorImg = "/assets/founder-portrait.png";
+const doctorImg = "/assets/doctor-portrait.png";
 
 const HERO = heroDentists;
 const ABOUT1 = about1Img;
